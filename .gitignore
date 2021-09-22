@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 db.sqlite3
 bf_dumps/*
+.gitignore
+.dockerignore
+fields_for_sea_battle.txt
