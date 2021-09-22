@@ -1,32 +1,28 @@
-#  Realtime battleships game with chat #
+#  Multiplayer sea battle game
 
-## Technology stack ##
+## Stack: ##
 
-> Django + channels
-> 
-> JavaScript
-> 
-> HTML + CSS
-> 
-> Redis
-> 
-> Docker
+- **Django**
+  - channels (+redis)
+- Docker
 
-## Set up ##
-1. Clone project 
+## Usage: ##
 
-`git clone git@gitlab.com:tovarischduraley/seabattle.git`
+  ```sh
+  git clone git@gitlab.com:tovarischduraley/seabattle.git
+  ```
 
-2. Change directory
+  ```sh
+  cd Sea_battle
+  ```
 
-`cd SeaBattle`
+  ```sh
+  docker-compose build
+  ```
 
-3. Change CRLF eol to LF in `entrypoint.sh`
-4. Build docker-compose
-`docker-compose build`
-5. Run docker-compose
-`docker-compose up`
-
-![](/screenshots/screen1.png?raw=true)
-![](/screenshots/screen2.png?raw=true)
-
+  ```sh
+  docker-compose up
+  ```
+## Additional: ##
+1. auto recconect to the server (game state will be saved).
+2. guaranteed message delivery.
