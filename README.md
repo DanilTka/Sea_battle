@@ -9,13 +9,11 @@
 ## Usage: ##
 
   ```sh
-  git clone git@gitlab.com:tovarischduraley/seabattle.git
+  git clone git@github.com:DanilTka/Sea_battle.git
 
   cd Sea_battle
 
-  docker-compose build
-
-  docker-compose up
+  docker-compose up -d --build
   ```
 ## Additional: ##
 1. auto recconect to the server (game state will be saved).
