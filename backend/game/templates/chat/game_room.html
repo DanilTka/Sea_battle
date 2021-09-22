@@ -1,0 +1,295 @@
+{% load static %}
+
+<head>
+    <meta http-equip="Content_type" content="text/html; charset = utf-8">
+    <link rel="stylesheet" href="{% static 'chat/css/style.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Морской бой</title>
+</head>
+<div style="
+    width:100%;
+    display: flex;
+    justify-content: center;
+"><h1>Sea battle</h1></div>
+{% include './includes/messages.html' %}
+<div class="minor-text">
+    <h3 align="center">{{room_name}}</h3>
+    <h3 align="center">username: {{user}}</h3>
+    <h3 align="center" style="font-style: italic;" id="message-hint">Wait for an opponent connection.</h3>
+</div>
+<h2 class="minor-text" align="center">Твоих попаданий:
+    <span id="user-hint"></span>/20</h2>
+<div class="block">
+    <div id="field-rival" class="field"></div>
+</div>
+<h2 class="minor-text" align="center">Попаданий противника:
+    <span id="rival-hint"></span>/20</h2>
+<div class="block">
+    <div id="field-user" class="field"></div>
+</div>
+<div class="minor-text" style="text-align:center">
+    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+    <input id="chat-message-input" type="text" size="100"><br>
+    <div>
+        <input style="display: inline-block;" id="chat-message-submit" type="button" value="Send">
+        <a href="{% url 'game' %}" style="width:120px;height:30px;margin: 0 0 0 20;">to lobby</a>
+    </div>
+</div>
+{{ user.username|json_script:"userName" }}
+<script>
+class Field {
+    constructor(field, role) {
+        this.field = field;
+        this.role = role;
+
+        this.fire = (target, rivalField) => {
+            userCount = document.querySelectorAll('#field-rival .broken').length;
+            if (myturn) {
+                let target_in_array = rivalField[target.id[1]][target.id[2]]
+                if (target_in_array == '1') {
+                    target.classList.add('broken');
+                    update_value = '3' // shot and broken
+                    userCount += 1;
+                } else if (target_in_array == '0'){
+                    target.classList.add('missed');
+                    update_value = '2'// shot and missed
+                }
+                update_id = `${0}${target.id[1]}${target.id[2]}`
+                myturn = false;
+                document.getElementById('message-hint').textContent = "Opponent's turn";
+                send_data_to_server(userCount, update_id, update_value);
+            }    
+            if(userCount == 20) {
+                alert('You win')
+            }
+            userHint.innerText = userCount;
+            rivalHint.innerText = rivalCount;
+        }
+        function send_data_to_server(userCount, update_id, update_value) {
+            console.log('send_data_to_server')
+            send(JSON.stringify({
+                'command': 'send_game_state_to',
+                'rival_field_update_id': update_id,
+                'rival_field_update_value': update_value,
+                'user_count': userCount,
+                'username': username
+            }));
+        }
+    }
+}
+
+function render(field, role) {
+        let fieldBlock = document.getElementById('field-' + role)
+        fieldBlock.innerHTML = null;
+        for (let i = 0; i < field.length; i++) {
+            for (let j = 0; j < field[i].length; j++) {
+                var block = document.createElement('div');
+                if (role == 'user') {
+                    block.id = `${0}${i}${j}`; // first digit indicates its user
+                }
+                else {
+                    block.id = `${1}${i}${j}`; // first digit indicates its rival
+                }
+                if (field[i][j] === "3") {
+                    block.classList.add('broken');
+                }
+                else if (field[i][j] === "2") {
+                    block.classList.add('missed');
+                }
+                else if (field[i][j] === "1") {
+                    block.classList.add('sheep');
+                };
+                if (role === 'rival') {
+                    block.addEventListener('click', (event) => gameRival.fire(event.target, rivalField));
+                };
+                fieldBlock.appendChild(block)
+            }
+        }
+    }
+
+function backFireRender() {
+            let fieldBlock = document.getElementById('field-user')
+            if (update_id != '' & update_value != '') {
+                let block = document.getElementById(update_id)
+                if (update_value == '3') {
+                    block.classList.add('broken');
+                } else if (update_value == '2'){
+                    block.classList.add('missed');
+                }
+            }
+        }
+
+let count = 0,
+    userCount = 0,
+    rivalCount = 0;
+
+let update_id = '',
+    update_value = '';
+
+let userField = {{user_field}},
+    rivalField = [
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"],
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"], 
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"], 
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"], 
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"], 
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"], 
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"], 
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"], 
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"], 
+    ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0"]
+];
+
+let roomName = {{room_name}},
+    myturn = true,
+    isOpponentOnline = false,
+    whos_turn = null;
+
+let username = JSON.parse(document.getElementById('userName').textContent);
+var gameUser = new Field(userField, 'user')
+render(userField, 'user');
+let gameRival = new Field(rivalField, 'rival')
+render(rivalField, 'rival');
+
+let userHint = document.getElementById('user-hint'),
+    rivalHint = document.getElementById('rival-hint');
+
+userHint.innerText = userCount;
+rivalHint.innerText = rivalCount;
+let lastMessage = ''
+
+
+send = function (message, callback) {
+    waitForConnection(function () {
+        chatSocket.send(message);
+        if (typeof callback !== 'undefined') {
+        callback();
+        }
+    }, 1000);
+};
+
+waitForConnection = function (callback, interval) {
+    if (chatSocket.readyState === 1) {
+        callback();
+    } else {
+        var that = this;
+        setTimeout(function () {
+            waitForConnection(callback, interval);
+        }, interval);
+    }
+};
+
+let chatSocket
+
+function connect() {
+    chatSocket = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/ws/'
+    + roomName
+    + '/'
+    );
+
+    chatSocket.onopen = function open() {
+        console.log('Websockets connection created.')
+        fetch_messages();
+    };
+
+    chatSocket.onclose = function(e) {
+        console.log('Socket is closed. Reconnect will be attempted in 5 second.', e.reason);
+        close_timer = setTimeout(() => {
+            connect();
+        }, 5000);
+    }
+
+    chatSocket.onmessage = function(e) {
+        console.log('onmessage');
+        let data = JSON.parse(e.data);
+        send_messages(data);
+        get_game_data(data);
+    };
+
+    function get_game_data (data) {
+        if (data['command'] == 'game_created') {
+            document.getElementById('message-hint').textContent = "Game has started!";
+            rivalField = data['rival_field']
+        }
+        if (data['command'] == 'game_unpause') {
+            userField = data['user_field'];
+            rivalField = data['rival_field'];
+            userCount = data['user_count'];
+            rivalCount = data['rival_count'];
+            whos_turn = data['whos_turn'];
+            render(userField, 'user');
+            render(rivalField, 'rival');
+        }
+        if (data['command'] == 'game_state'){
+            update_id = data['user_field_update_id'];
+            update_value = data['user_field_update_value'];
+            rivalCount = data['rival_count'];
+            rivalHint.innerText = rivalCount;
+            backFireRender();
+        }
+        if (data['whos_turn'] == username) {
+            document.getElementById('message-hint').textContent = "Now's your turn";
+            myturn = true;
+        }
+        else if (data['whos_turn']) {
+            document.getElementById('message-hint').textContent = "Opponent's turn";
+            myturn = false;
+        }
+    }
+
+    fetch_messages = function(e) {
+        console.log('Messages fetched.')
+        send(JSON.stringify({
+            'command': 'fetch_messages',
+            'room_name': roomName
+        }));
+    }
+    
+    function send_messages(data) {
+        if (data['command'] == 'new_message') {
+            console.log('new_message')
+            document.querySelector('#chat-log').value += (data['message'].timestamp + '  ' + data['message'].player + ':' + ' ' + data['message'].content + '\n');
+        }
+        else if (data['command'] == 'messages') {
+            document.querySelector('#chat-log').value = ''
+            for (let i=0; i<data['messages'].length; i++) {
+                document.querySelector('#chat-log').value += (data['messages'][i].timestamp + '  ' + data['messages'][i].player + ':' + ' '  + data['messages'][i].content + '\n');
+            }
+        }
+    }
+
+    function messaging(message) {
+        send(
+            JSON.stringify({
+                'message': message,
+                'command': 'new_message'
+        }));
+    }
+
+    function chating() {
+        // when we're sending message
+        document.querySelector('#chat-message-input').focus();
+        document.querySelector('#chat-message-input').onkeyup = function(e) {
+            if (e.keyCode === 13) {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+        document.querySelector('#chat-message-submit').onclick = function(e) {
+            const messageInputDom = document.querySelector('#chat-message-input');
+            lastMessage = messageInputDom.value;
+            messaging(lastMessage);
+            messageInputDom.value = '';
+        };
+    };
+    chating();
+}
+connect();
+
+
+
+</script>

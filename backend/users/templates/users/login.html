@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'users/css/login.css' %}">
+    <title>Авторизация</title>
+</head>
+<body>
+    <section class="form-section">
+        <form class="form" method="post">
+            <h1>Авторизация</h1>
+            {% csrf_token %}
+            <fieldset class="form-fieldset">
+                {{form.as_p}}
+            </fieldset>
+            <div class="form-button">
+                <button class="submit-button" type="submit">Войти</button>
+            </div>
+            <div class="after-tooltip">
+                <small class="">Нет аккаунта? <a class="ml-2" href="{% url 'register' %}">Зарегистрироваться</a> </small>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

@@ -1,0 +1,87 @@
+html, body, *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box
+}
+html, body {
+  height: 100%;
+
+}
+body {
+  padding: 64px;
+  height: 100%;
+  background: #fafafa;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+.block {
+  padding: 20px;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  clear: left;
+  width: 100%;
+}
+.but {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  padding: 4px;
+}
+.field {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  height: 242px;
+  width: 242px;
+  background: #d9d2d2;
+  margin: 24px;
+  border: 1px solid #363333;
+}
+.menu {
+  display: flex;
+  justify-content: center;
+  height: 242px;
+  width: 242px;
+  background: #d9d2d2;
+  border: 1px solid #bbdefb;
+  flex-direction: column;
+  margin: 24px;
+}
+.field::before, .field::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.field > div {
+  display: inline-block;
+  float: left;
+  height: 24px;
+  width: 24px;
+  border: 1px solid #363333;
+  background-color: #e3f2fd;
+}
+#field-rival .sheep {
+  background-color: #e3f2fd;
+}
+
+.field .sheep {
+  background-color: #33a038;
+}
+.field .broken,
+#field-rival .broken {
+  background-color: #fc3030;
+}
+.field .missed {
+  background-color:  #60b4f8;
+}
+.main-text {
+  float:center; 
+}
+
+.minor-text{
+  float:center;
+  width: 100%;
+  justify-content:center;
+}

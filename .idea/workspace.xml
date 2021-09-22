@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2bbfaf3e-8b24-4ded-8fc4-4d14c59e17c0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1xLggDjnKOOyNCiYSKNdb9CEBJW" />
+  <component name="ProjectViewState">
+    <option name="compactDirectories" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\backend\chat\templates\chat" />
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\backend\main\includes" />
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\users" />
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\chat\templates\chat" />
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\chat\static\chat\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle_prod\backend\chat" />
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\backend\game\services" />
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\chat\tests" />
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\chat\static\chat\css" />
+      <recent name="C:\Program Files (x86)\django-sites\sea_battle\chat\templates\chat" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2bbfaf3e-8b24-4ded-8fc4-4d14c59e17c0" name="Default Changelist" comment="" />
+      <created>1630139892125</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1630139892125</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1630685601447">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1630685601447" />
+    <state x="431" y="185" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1632170540914">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="431" y="185" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768/1366.0.1680.1050@0.0.1366.768" timestamp="1632170540914" />
+    <state x="781" y="130" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1630356499237">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="781" y="130" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.768@0.0.1366.768" timestamp="1630356499237" />
+    <state x="479" y="274" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog" timestamp="1630433304699">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="479" y="274" key="#com.jetbrains.python.refactoring.move.PyMoveModuleMembersDialog/0.0.1366.768@0.0.1366.768" timestamp="1630433304699" />
+    <state x="857" y="152" key="FileChooserDialogImpl" timestamp="1632231064626">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="857" y="152" key="FileChooserDialogImpl/0.0.1366.768/1366.0.1680.1050@0.0.1366.768" timestamp="1632231064626" />
+    <state x="857" y="152" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1631635897607" />
+    <state x="368" y="28" key="SettingsEditor" timestamp="1632231071788">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="368" y="28" key="SettingsEditor/0.0.1366.768/1366.0.1680.1050@0.0.1366.768" timestamp="1632231071788" />
+    <state x="368" y="28" key="SettingsEditor/0.0.1366.768@0.0.1366.768" timestamp="1631995499651" />
+    <state x="59" y="75" width="1211" height="565" key="dock-window-1" timestamp="1631821263423">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="59" y="75" width="1211" height="565" key="dock-window-1/0.0.1366.768@0.0.1366.768" timestamp="1631821263423" />
+    <state x="661" y="63" width="558" height="637" key="dock-window-2" timestamp="1632221710502">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="661" y="63" width="558" height="637" key="dock-window-2/0.0.1366.768/1366.0.1680.1050@0.0.1366.768" timestamp="1632221710502" />
+    <state x="100" y="101" width="558" height="637" key="dock-window-2/0.0.1366.768@0.0.1366.768" timestamp="1632047935845" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1632151507724">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768/1366.0.1680.1050@0.0.1366.768" timestamp="1632151507724" />
+  </component>
+</project>

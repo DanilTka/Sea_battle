@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./backend
+    container_name: sea_battle
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+    - 8000:8000
+    volumes:
+    - ./backend/:/usr/src/backend
+    environment:
+    - REDIS_HOST=redis
+    env_file:
+    - ./.env.dev
+    links:
+    - redis
+  
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
