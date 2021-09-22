@@ -10,17 +10,11 @@
 
   ```sh
   git clone git@gitlab.com:tovarischduraley/seabattle.git
-  ```
 
-  ```sh
   cd Sea_battle
-  ```
 
-  ```sh
   docker-compose build
-  ```
 
-  ```sh
   docker-compose up
   ```
 ## Additional: ##
