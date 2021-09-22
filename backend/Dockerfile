@@ -15,4 +15,6 @@ RUN python -m venv . && \
 COPY . .
 
 
+RUN chmod +x /usr/src/sea_battle/entrypoint.sh
+
 ENTRYPOINT ["./entrypoint.sh"]
