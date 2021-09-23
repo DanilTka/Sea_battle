@@ -5,7 +5,16 @@ from game.models import Room, Player, Fields, Message
 
 
 def get_field_and_add_to_player(player) -> Fields:
-    field = Fields.objects.get(id=1).fields if not player.field else player.field
+    'Assign field to player. Creates data if db fields is empty.'
+    field = Fields.objects.filter(id=1).first()
+    if field is None:
+        Fields.objects.create(id=1,fields='0111101110000000000010000000010000000001100000000010000000010000000000100000000000000000000110101110')
+        Fields.objects.create(id=2,fields='0111100000000000000010100000101010010000001000000000000010000010000000000000000100000000010111001100')
+        Fields.objects.create(id=3,fields='0100000000000111100000000000011000000000101100001110000000000010000000000010010000001000001110000000')
+        Fields.objects.create(id=4,fields='0000010010000100001011000000000000001000001000100000100010100000001000011100001000000000000000011100')
+        Fields.objects.create(id=5,fields='0000000110010010000000001000100000000000000001110101000000010100000000010001000001000101010000010000')
+        field = Fields.objects.filter(id=1).first()
+    field = field.fields if not player.field else player.field
     player.field = field
     player.save()
     return field

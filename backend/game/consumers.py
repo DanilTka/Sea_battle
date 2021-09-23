@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 from game.services import db_operations
 from game.services.db_operations import room_has_this_player
@@ -20,7 +20,7 @@ class SeaBattleConsumer(WebsocketConsumer):
             scope=self.scope,
         )
 
-        if player_or_redirect is HttpResponse:
+        if  isinstance(player_or_redirect, HttpResponseRedirect):
             return player_or_redirect
         else:
             self.player = player_or_redirect
@@ -46,6 +46,7 @@ class SeaBattleConsumer(WebsocketConsumer):
             else self.new_connect()
 
     def new_connect(self):
+        'Player without background room data.'
         self.player.room = self.room_name
         self.player.save()
         db_operations.fill_the_room(
@@ -55,6 +56,7 @@ class SeaBattleConsumer(WebsocketConsumer):
         self.start_game_if_rooms_full()
 
     def reconnect(self):
+        'Reconnect to a game room stored in player data.'
         if self.room.whos_turn:
             self.unpause_game()
         else:
@@ -88,17 +90,8 @@ class SeaBattleConsumer(WebsocketConsumer):
             }
         )
 
-    def group_send_event(self, message):
-        # Send message to room group
-        async_to_sync(self.channel_layer.group_send)(
-            self.room.group_channel_name,
-            {
-                'type': 'send_event',
-                'message': message
-            }
-        )
-
     def channel_send_data(self, message, channel_name):
+        'Send data to the specific channel name.'
         async_to_sync(self.channel_layer.send)(
             channel_name,
             {
@@ -107,13 +100,11 @@ class SeaBattleConsumer(WebsocketConsumer):
             }
         )
 
-    def send_event(self, message):
-        self.send(text_data=json.dumps(message))
-
     def send_data(self, event):
         self.send(text_data=json.dumps(event['message']))
 
     def start_game_if_rooms_full(self):
+        'Send command to start a game.'
         self.room = Room.objects.get(name=self.room_name)
         if self.room.first_user and self.room.second_user:
             if not self.room.second_field or not self.room.first_field:
@@ -124,6 +115,7 @@ class SeaBattleConsumer(WebsocketConsumer):
             self.send_primary_game_data()
 
     def update_player_field_in_the_room(self, data):
+        'Saves room data for the future reconnection.'
         self.room = Room.objects.get(name=self.room_name)
         value_array = data['rival_field_update_value']
         id_array = data['rival_field_update_id'][1:]
@@ -201,6 +193,7 @@ class SeaBattleConsumer(WebsocketConsumer):
         self.channel_send_data(content, channel_name=self.channel_name)
 
     def fetch_messages(self, data):
+        'Fetches messages when player reconnects.'
         if data['room_name'] == self.room_name:
             messages = Message.load_messages(data['room_name'])
             content = {

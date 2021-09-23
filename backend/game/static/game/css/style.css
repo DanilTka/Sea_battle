@@ -17,6 +17,11 @@ body {
 }
 .block {
   padding: 20px;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  clear: left;
+  width: 100%;
 }
 .but {
   display: flex;
@@ -76,7 +81,7 @@ body {
 }
 
 .minor-text{
-  float:center; 
-  clear: left;
+  float:center;
   width: 100%;
+  justify-content:center;
 }

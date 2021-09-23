@@ -2,29 +2,28 @@
 
 <head>
     <meta http-equip="Content_type" content="text/html; charset = utf-8">
-    <link rel="stylesheet" href="{% static 'chat/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'game/css/style.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Морской бой</title>
+    <title>Sea battle</title>
 </head>
 <div style="
     width:100%;
     display: flex;
     justify-content: center;
 "><h1>Sea battle</h1></div>
-{% include './includes/messages.html' %}
 <div class="minor-text">
     <h3 align="center">{{room_name}}</h3>
     <h3 align="center">username: {{user}}</h3>
     <h3 align="center" style="font-style: italic;" id="message-hint">Wait for an opponent connection.</h3>
 </div>
-<h2 class="minor-text" align="center">Твоих попаданий:
+<h2 class="minor-text" align="center">You smashed:
     <span id="user-hint"></span>/20</h2>
 <div class="block">
     <div id="field-rival" class="field"></div>
 </div>
-<h2 class="minor-text" align="center">Попаданий противника:
+<h2 class="minor-text" align="center">Opponent smashed:
     <span id="rival-hint"></span>/20</h2>
 <div class="block">
     <div id="field-user" class="field"></div>
@@ -34,7 +33,7 @@
     <input id="chat-message-input" type="text" size="100"><br>
     <div>
         <input style="display: inline-block;" id="chat-message-submit" type="button" value="Send">
-        <a href="{% url 'game' %}" style="width:120px;height:30px;margin: 0 0 0 20;">to lobby</a>
+        <a href="{% url 'game_lobby' %}" style="width:120px;height:30px;margin: 0 0 0 20;">to lobby</a>
     </div>
 </div>
 {{ user.username|json_script:"userName" }}
@@ -68,7 +67,6 @@ class Field {
             rivalHint.innerText = rivalCount;
         }
         function send_data_to_server(userCount, update_id, update_value) {
-            console.log('send_data_to_server')
             send(JSON.stringify({
                 'command': 'send_game_state_to',
                 'rival_field_update_id': update_id,
@@ -205,7 +203,6 @@ function connect() {
     }
 
     chatSocket.onmessage = function(e) {
-        console.log('onmessage');
         let data = JSON.parse(e.data);
         send_messages(data);
         get_game_data(data);
@@ -243,7 +240,6 @@ function connect() {
     }
 
     fetch_messages = function(e) {
-        console.log('Messages fetched.')
         send(JSON.stringify({
             'command': 'fetch_messages',
             'room_name': roomName
@@ -252,7 +248,6 @@ function connect() {
     
     function send_messages(data) {
         if (data['command'] == 'new_message') {
-            console.log('new_message')
             document.querySelector('#chat-log').value += (data['message'].timestamp + '  ' + data['message'].player + ':' + ' ' + data['message'].content + '\n');
         }
         else if (data['command'] == 'messages') {

@@ -12,8 +12,8 @@
   git clone git@github.com:DanilTka/Sea_battle.git
 
   cd Sea_battle
-
-  docker-compose up -d --build
+  
+  docker-compose up --build
   ```
 ## Additional: ##
 1. auto recconect to the server (game state will be saved).

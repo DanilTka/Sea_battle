@@ -10,6 +10,7 @@ from game.services import db_operations
 
 @login_required
 def game(request):
+    'Render game lobby'
     player = Player.objects.get_or_create(username=request.user.username)[0]
     db_operations.make_player_offline(player)
     db_operations.if_room_empty_delete_ref_data(room=player.room)
@@ -22,13 +23,14 @@ def game(request):
     context = {
         'user_field': mark_safe(json.dumps(to_array(field))),
     }
-    return render(request, 'chat/game.html', context)
+    return render(request, 'game/game.html', context)
 
 
 @login_required
 def game_room(request, room_name):
+    'Render game room with 2 players.'
     context = {
         'room_name': mark_safe(json.dumps(room_name)),
         'user_field': mark_safe(json.dumps(to_array(Player.objects.get(username=request.user).field))),
     }
-    return render(request, 'chat/game_room.html', context)
+    return render(request, 'game/game_room.html', context)
