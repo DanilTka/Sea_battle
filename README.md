@@ -18,3 +18,11 @@
 ## Additional: ##
 1. auto recconect to the server (game state will be saved).
 2. guaranteed message delivery.
+
+## Game frames: ##
+### Lobby
+![](https://i.ibb.co/QPTJK6W/lobby.png)
+### Room
+![](https://i.ibb.co/tXS7S0c/game.png)
+### Chat
+![](https://i.ibb.co/VBwkjwm/chat.png)
