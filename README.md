@@ -21,8 +21,8 @@
 
 ## Game frames: ##
 ### Lobby
-![](https://i.ibb.co/QPTJK6W/lobby.png)
+![](https://i.ibb.co/1vGF4xy/lobby.png)
 ### Room
 ![](https://i.ibb.co/tXS7S0c/game.png)
 ### Chat
-![](https://i.ibb.co/VBwkjwm/chat.png)
+![](https://i.ibb.co/Fzs488Z/chat.png)
