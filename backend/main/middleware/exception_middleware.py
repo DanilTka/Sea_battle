@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
 
@@ -6,6 +5,9 @@ from game.models import Player, Room, Message
 
 
 class MyExceptionMiddleware(object):
+    """
+    Resets all rooms if there is an exception.
+    """
     def __init__(self, get_response):
             self.get_response = get_response
 

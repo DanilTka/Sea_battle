@@ -1,5 +1,5 @@
 {% load static %}
-
+<html>
 <head>
     <meta http-equip="Content_type" content="text/html; charset = utf-8">
     <link rel="stylesheet" href="{% static 'game/css/style.css' %}">
@@ -8,6 +8,7 @@
 
     <title>Sea battle</title>
 </head>
+<body>
 <div style="
     width:100%;
     display: flex;
@@ -35,6 +36,7 @@
         </form>
     </div>
 </div>
+</body>
 <script>
 class Field {
     constructor(field, role) {
@@ -66,3 +68,4 @@ var gameUser = new Field(userField, 'user')
 gameUser.render();
 
 </script>
+</html>
