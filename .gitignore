@@ -1,3 +1,6 @@
+local_settings.py
+pytest.ini
+chromedriver.exe
 db.sqlite3
 .idea
 venv/

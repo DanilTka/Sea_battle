@@ -6,7 +6,6 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
             user = form.save()
             login(request, user)
             return redirect('game_lobby')

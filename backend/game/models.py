@@ -10,7 +10,7 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.content, format(self.timestamp, "%H:%M:%S")
+        return "{}  time: {}".format(self.content, format(self.timestamp, "%H:%M:%S"))
 
     def load_messages(room_name):
         return Message.objects.order_by('timestamp').filter(
