@@ -1,10 +1,11 @@
-#  Multiplayer sea battle game
+#  Multiplayer sea battle game (+tests) 
 
 ## Stack: ##
 
 - **Django**
   - channels (+redis)
 - Docker
+- Unittest, selenium
 
 ## Usage: ##
 
@@ -26,3 +27,5 @@
 ![](https://i.ibb.co/tXS7S0c/game.png)
 ### Chat
 ![](https://i.ibb.co/Fzs488Z/chat.png)
+### Coverage
+![](https://i.ibb.co/Bs2JL7k/covarage.png)
